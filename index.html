@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Toss Coin Game</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./web3.min.js"></script>
+    <script type="text/javascript" src="./abi.js"></script>
+    <script type="text/javascript" src="./main.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container1" style="display: inline-block; margin-right:100px;">
+        <h1 class="display-4">Tossing a Coin</h1>
+        <p class="lead">1. Select the side of the coin you want to bet.</p>
+        <p class="lead">2. Type In your name and the amount of ether you want to put in.</p>
+        <p class="lead">3. Click "Make A Bet" </p>
+        <p class="lead">4. Waiting for your result displayed in the "Your Betting Result" section below. </p>
+        <p class="lead">5. If you win, you will have a double amount of the money you bet.</p>
+        <p class="lead">6. If you lose, you cannot have your money back.</p>
+        <p class="lead">7. You can make a bet again only if you got previous bet result back.</p>
+      </div>
+
+      <div class="container2" style="display: inline-block;">
+
+        <div class="coin1" style="display: inline-block;">
+          <h2 class="user_bet" id="user_bet_msg" style="margin:0px 0px 0px 20px;font-family: 'Indie Flower', cursive;">Your Bet</h2>
+          <img class="img0" src="images/coin_head_cat.jpeg" style="width: 150px; height: 150px;">
+          <img class="img1" src="images/coin_tail_cat.jpeg" style="width: 150px; height: 150px;">
+          <form>
+            <input type="radio" id="coin_Head" class="inline-radio" name="radio_group" value="head" style=" display: inline-block;"/>
+            <label for="coin_Head" class="inline-radio" style=" display: inline-block; margin-right:100px">Head</label>
+            <input type="radio" id="coin_Tail" class="inline-radio" name="radio_group" value="tail" style=" display: inline-block;"/>
+            <label for="coin_Tail" class="inline-radio" style=" display: inline-block;">tail</label>
+         </form>
+        </div>
+
+        <div class="coin2" style="display: inline-block;">
+          <h2 class="coin_flip_result" id="coin_flip_result_msg" style="margin:0px 0px 0px 50px;font-family: 'Indie Flower', cursive;">Coin flip result</h2>
+          <img class="img2" src="images/coinToss.jpeg" style="width:200px; height:200px;margin:0px 0px 0px 50px;">
+          <form>
+            <br>
+          </form>
+        </div>
+
+      </div>
+    </div>
+    <div class="container">
+      <div>
+        <h2>Add Your Betting Content</h2>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" id="name_input" placeholder="Name" >
+        </div>
+        <!--
+        <div class="input-group mb-3">
+          <input type="number" class="form-control" id="coinside_input" placeholder="Please typeIn 0 or 1. Head for 0, and tail for 1">
+        </div>
+        -->
+        <div class="input-group mb-3">
+          <input type="number" class="form-control" id="amount_input" placeholder="Amount(ether) to Bet" >
+        </div>
+        <button type="button" id="make_a_bet_button" class="btn btn-primary">Make A Bet</button>
+      </div>
+      <div>
+        <h2>Your Betting Result</h2>
+        <div>
+          Bet Query ID: <span id="queryId_output"></span>
+        </div>
+        <div>
+          Name: <span id="name_output"></span>
+        </div>
+        <div>
+          CoinSide To Bet: <span id="coinside_output"></span>
+        </div>
+        <div>
+          Amount To Bet: <span id="amount_output"></span>
+        </div>
+        <div>
+          Flipping result: <span id="flipResult_output"></span>
+        </div>
+        <div>
+          Did you win? <span id="betResult_output"></span>
+        </div>
+
+
+
+      </div>
+      <div>
+        <br>
+        <div>
+          <span>=======================   Contract Onwer Area  =========================</span>
+        </div>
+        <div>
+          Current contract balance: <span id="contractBalance_output"></span><a> ether</a>
+        </div>
+        <div>
+          Current betting pool balance: <span id="bettingPoolBalance_output"></span><a> ether</a>
+        </div>
+        <div class="input-group mb-3">
+          <input type="number" class="form-control" id="user_add_amount_input" placeholder="Amount(ether) to Add into the Contract" style="float: right; margin-right: 10px;">
+          <button type="button" id="add_balance_button" class="btn btn-primary" style="float: right;margin-right: 10px;">Add Contract Balance</button>
+          <button type="button" id="update_balanceInfo_button" class="btn btn-primary" style="float: right;margin-right: 10px;">Update Current Balance Info</button>
+          <button type="button" id="withdrawAll_button" class="btn btn-primary" style="float: right;margin-right: 10px;">Withdraw Contract Balance</button>
+        </div>
+    </div>
+    </div>
+    <div>
+
+    </div>
+
+  </body>
+</html>
